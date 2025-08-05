@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/Manasa-2023/jenkins-node-app.git' // Replace this
+                git branch: 'main', url: 'https://github.com/Manasa-2023/jenkins-node-app.git'
             }
         }
 
