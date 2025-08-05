@@ -1,6 +1,10 @@
 pipeline {
-    agent any
-
+    agent {
+        docker {
+            image 'node:18'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
     stages {
         stage('Install Dependencies') {
             steps {
@@ -16,13 +20,13 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'echo "Run tests here"'
+                echo 'Running tests...'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'docker run -d -p 3000:3000 my-node-app'
+                echo 'Deploying app...'
             }
         }
     }
