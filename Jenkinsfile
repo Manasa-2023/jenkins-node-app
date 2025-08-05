@@ -1,13 +1,11 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:16' // Node.js environment
+        }
+    }
 
     stages {
-        stage('Clone') {
-            steps {
-                git branch: 'main', url: 'https://github.com/Manasa-2023/jenkins-node-app.git'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
@@ -16,19 +14,19 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t jenkins-node-app .'
+                sh 'docker build -t my-node-app .'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'echo "Tests go here. Currently no tests implemented."'
+                sh 'echo "Run tests here"'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'docker run -d -p 3000:3000 jenkins-node-app'
+                sh 'docker run -d -p 3000:3000 my-node-app'
             }
         }
     }
