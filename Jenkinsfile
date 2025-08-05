@@ -1,11 +1,17 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:18'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
+    agent any
+
+    environment {
+        IMAGE_NAME = "my-node-app"
     }
+
     stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/Manasa-2023/jenkins-node-app.git'
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
@@ -14,7 +20,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t my-node-app .'
+                sh 'docker build -t $IMAGE_NAME .'
             }
         }
 
