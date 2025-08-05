@@ -10,7 +10,7 @@ This project demonstrates a basic CI/CD pipeline using **Jenkins**, **Node.js**,
   - Checkout code from GitHub
   - Install Node.js dependencies (`npm install`)
   - Build Docker image
-  - (Optional) Test and Deploy steps
+  - Test and Deploy steps
 
 ## Technologies Used
 
